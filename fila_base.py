@@ -1,5 +1,7 @@
 import abc
 
+from constantes import QUANTIDADE_MAXIMA_SENHAS, QUANTIDADE_MINIMA_SENHAS
+
 
 class FilaBase(metaclass=abc.ABCMeta):
     codigo: int = 0
@@ -8,8 +10,8 @@ class FilaBase(metaclass=abc.ABCMeta):
     senha_atual: str = ""
 
     def reseta_fila(self) -> None:
-        if self.codigo >= 200:
-            self.codigo = 0
+        if self.codigo >= QUANTIDADE_MAXIMA_SENHAS:
+            self.codigo = QUANTIDADE_MINIMA_SENHAS
         else:
             self.codigo += 1
 
