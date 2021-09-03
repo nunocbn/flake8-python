@@ -13,16 +13,7 @@ class FilaPrioritaria(FilaBase):
         self.clientes_atendidos.append(cliente_atual)
         return f"Cliente {cliente_atual} dirija-se ao Caixa {caixa}"
 
-    def estatisca(self, dia: str, agencia: int, flag: str) -> dict:
-        estatistica: Dict[str, Union[List[str], int, str]] = {}
-        if flag != "detail":
-            estatistica[f"{agencia}-{dia}"] = len(self.clientes_atendidos)
-        else:
-            estatistica["dia"] = dia
-            estatistica["agencia"] = agencia
-            estatistica["clientes atendidos"] = self.clientes_atendidos
-            estatistica["quantidade clientes atendidos"] = (
-                len(self.clientes_atendidos)
-            )
+    def estatisca(self, dia: str, agencia: int, retorna_estatistica) -> dict:
+        estatistica = retorna_estatistica(dia, agencia)
 
-        return estatistica
+        return estatistica.roda_estatistica(self.clientes_atendidos)
